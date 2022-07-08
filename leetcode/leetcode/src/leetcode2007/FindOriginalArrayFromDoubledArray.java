@@ -1,39 +1,39 @@
 package leetcode2007;
 
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * 아직 못 풀었음!!!
  */
 public class FindOriginalArrayFromDoubledArray {
     public static void main(String[] args) {
-//        int[] changed = {1, 3, 4, 2, 6, 8};
-        int[] changed = {3, 1};
+//        int[] changed = {1, 3, 4, 2, 6, 8};       // 1 2 3 4 6 8
+//        int[] changed = {3, 1};
+//        int[] changed = {0, 3, 2, 4, 6, 0}; //0 0 2 3 4 6
+//        int[] changed = {2, 1};
+        int[] changed = {1};
 
-        int[] original = new int[changed.length / 2];
-        original = findOriginalArray(changed);
-        for (int i = 0; i < original.length; i++) {
-            System.out.println(original[i]);
+        changed = findOriginalArray(changed);
+        for (int a : changed) {
+            System.out.println(a);
         }
     }
 
     static int[] findOriginalArray(int[] changed) {
-        int[] ans = new int[changed.length / 2];
-        int count = 0;
-
-        for (int i = 0, j = changed.length / 2; i < changed.length / 2; i++, j++) {
-            if (changed[i] * 2 == changed[j]) {
-                ans[i] = changed[i];
-                count++;
-            }else if((double)changed[i]/2.0 == (double)changed[j]){
-                ans[i] = changed[j];
-                count++;
-            }
+        if (changed.length % 2 != 0) {      //If Array has odd number of element return empty array.
+            return new int[0];
         }
 
-        if (count == changed.length / 2) {
-            return ans;
-        }else{
-            int[] empty = {};
-            return empty;
+        Arrays.sort(changed);
+        Map<Integer, Integer> map = new HashMap<>();
+
+        for (int num : changed) {
+            map.put(num, map.getOrDefault(num, 0) + 1);
+            System.out.println(map.get(num));
         }
+
+        return new int[0];
     }
 }
