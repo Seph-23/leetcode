@@ -4,9 +4,6 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * 아직 못 풀었음!!!
- */
 public class FindOriginalArrayFromDoubledArray {
     public static void main(String[] args) {
 //        int[] changed = {1, 3, 4, 2, 6, 8};       // 1 2 3 4 6 8
@@ -22,18 +19,32 @@ public class FindOriginalArrayFromDoubledArray {
     }
 
     static int[] findOriginalArray(int[] changed) {
+        Map<Integer, Integer> map = new HashMap<>();
+        int[] res = new int[changed.length / 2];
+        int pointer = 0;
+
         if (changed.length % 2 != 0) {      //If Array has odd number of element return empty array.
             return new int[0];
         }
 
         Arrays.sort(changed);
-        Map<Integer, Integer> map = new HashMap<>();
 
         for (int num : changed) {
             map.put(num, map.getOrDefault(num, 0) + 1);
-            System.out.println(map.get(num));
         }
 
-        return new int[0];
+        for (int num : changed) {
+            if (map.get(num) < 1) {
+                continue;
+            }
+            if (map.getOrDefault(num * 2, 0) < 1) {
+                return new int[0];
+            }
+
+            map.put(num, map.get(num) - 1);
+            map.put(num * 2, map.get(num * 2) - 1);
+            res[pointer++] = num;
+        }
+        return res;
     }
 }
