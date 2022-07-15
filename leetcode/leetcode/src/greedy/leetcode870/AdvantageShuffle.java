@@ -3,9 +3,10 @@ package greedy.leetcode870;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.PriorityQueue;
 
 /**
- * 아직 풀어야됨!
+ * 람다, PriorityQueue
  */
 public class AdvantageShuffle {
     public static void main(String[] args) {
@@ -13,22 +14,30 @@ public class AdvantageShuffle {
         int[] nums2 = {1, 10, 4, 11};
 
         int[] ans = advantageCount(nums1, nums2);
-        System.out.println(ans.toString());
+        System.out.println(Arrays.toString(ans));
     }
 
     static int[] advantageCount(int[] nums1, int[] nums2) {
-        int[] ans = new int[nums1.length];
-        int[] tempNums2 = new int[nums2.length];
+        Arrays.sort(nums1);                 //nums1 sorted in asc. order
+        int length = nums1.length;          //length of arrays
+        int[] ans = new int[length];        //store answer, Advantage shuffle (of nums1).
 
-        for (int i = 0; i < nums2.length; i++) {
-            tempNums2[i] = nums2[i];
+        PriorityQueue<int[]> pq = new PriorityQueue<>((a, b) -> b[0] - a[0]);       //PriorityQueue in desc. order.
+
+        for (int i = 0; i < length; i++) {
+            pq.add(new int[]{nums2[i], i});
         }
 
-        Map<Integer, Integer> map = new HashMap<>();
-        Arrays.sort(nums1);
-        Arrays.sort(nums2);
-        for (int i = 0; i < nums1.length; i++) {
-            map.put(nums1[i], nums2[i]);
+        int low = 0, high = length-1;
+        while (!pq.isEmpty()) {
+            int[] curr = pq.poll();
+            int index=curr[1], val=curr[0];
+
+            if (nums1[high] > val) {
+                ans[index] = nums1[high--];
+            }else{
+                ans[index] = nums1[low++];
+            }
         }
 
         return ans;
