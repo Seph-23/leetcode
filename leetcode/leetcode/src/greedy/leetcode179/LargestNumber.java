@@ -5,7 +5,7 @@ import java.util.Comparator;
 
 public class LargestNumber {
     public static void main(String[] args) {
-        int[] nums = {0, 0};
+        int[] nums = {3, 30, 34, 5, 9};
         String ans = largestNumber(nums);
         System.out.println(ans);
     }
@@ -14,8 +14,10 @@ public class LargestNumber {
     static String largestNumber(int[] nums) {
         String[] ans = new String[nums.length];
         String answer = "";
+
         for (int i = 0; i < nums.length; i++) {
-            ans[i] = String.valueOf(nums[i]);
+            ans[i] = Integer.toString(nums[i]);             //both works but toString will throw NPE when the array is null.
+            //ans[i] = String.valueOf(nums[i]);
         }
 
         Comparator<String> comp = new Comparator<String>() {
