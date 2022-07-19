@@ -4,9 +4,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-/**
- * 아직 못품!
- */
 public class WiggleSubsequence {
     public static void main(String[] args) {
 //        int[] nums = {1, 7, 4, 9, 2, 5};
@@ -24,38 +21,47 @@ public class WiggleSubsequence {
     }
 
     static int wiggleMaxLength(int[] nums) {
-        int befDiff, currDiff;
-        ArrayList<Integer> arrList = new ArrayList<>();
+//        int befDiff, currDiff;
+//        ArrayList<Integer> arrList = new ArrayList<>();
+//
+//        for (int i = 0; i < nums.length; i++) {
+//            arrList.add(nums[i]);
+//        }
+//
+//        if (arrList.size() == 0) {
+//            return 0;
+//        } else if (arrList.size() == 1) {
+//            return 1;
+//        } else if (nums[0] == nums[1] && arrList.size()==2) {
+//            return 1;
+//        }
+//
+//        for (int i = 1; i < arrList.size()-1; i++) {
+//            befDiff = arrList.get(i-1) - arrList.get(i);
+//            currDiff = arrList.get(i) - arrList.get(i+1);
+//            if (befDiff < 0 && currDiff < 0) {
+//                arrList.remove(i + 1);
+//                i--;
+//            }else if (befDiff > 0 && currDiff > 0){
+//                arrList.remove(i + 1);
+//                i--;
+//            }else if (arrList.get(i-1).equals(arrList.get(i))) {
+//                arrList.remove(i - 1);
+//                i--;
+//            }
+//        }
 
-        for (int i = 0; i < nums.length; i++) {
-            arrList.add(nums[i]);
-        }
-
-        if (arrList.size() == 0) {
-            return 0;
-        } else if (arrList.size() == 1) {
-            return 1;
-        } else if (nums[0] == nums[1] && arrList.size()==2) {
-            return 1;
-        }
-
-        for (int i = 1; i < arrList.size()-1; i++) {
-            befDiff = arrList.get(i-1) - arrList.get(i);
-            currDiff = arrList.get(i) - arrList.get(i+1);
-            if (befDiff < 0 && currDiff < 0) {
-                arrList.remove(i + 1);
-                i--;
-            }else if (befDiff > 0 && currDiff > 0){
-                arrList.remove(i + 1);
-                i--;
-            }else if (arrList.get(i-1).equals(arrList.get(i))) {
-                arrList.remove(i - 1);
-                i--;
+//        return arrList.size();
+        if(nums.length == 0) return 0;
+        int count = 1;
+        int prevDiff = 0;
+        for (int i = 1; i < nums.length; i++) {
+            int diff = nums[i] - nums[i-1];
+            if( (diff > 0 && prevDiff <= 0) || (diff < 0 && prevDiff >=0) ) {
+                count++;
+                prevDiff = diff;
             }
         }
-
-        System.out.println(arrList.toString());
-
-        return arrList.size();
+        return count;
     }
 }
