@@ -4,14 +4,33 @@ import java.util.PriorityQueue;
 
 public class Practice {
     public static void main(String[] args) {
-        int[] c = {1, 3, 2, 4, 3, 5};
-        int[] d = {9, 7, 8, 6, 7, 5};
+        String name = "dog";
+        int age = 21;
+        String voice = "왈왈";
 
-        PriorityQueue<Integer> pq = new PriorityQueue<>((a, b) -> a - b);
+        Animal dog = new Animal(name, age, voice);
+        Animal cat = new Animal("cat", 15, "냥냥");
 
-        for (int i = 0; i < c.length; i++) {
-            pq.add(c[i]);
-        }
-        System.out.println(pq.poll());
+        printAnimal(dog);
+        printAnimal(cat);
+
+
+    }
+    static void printAnimal(Animal type){
+        System.out.println("name = " + type.name);
+        System.out.println("age = " + type.age);
+        System.out.println("voice = " + type.voice);
+    }
+}
+
+class Animal {
+    String name;
+    int age;
+    String voice;
+
+    public Animal(String name, int age, String voice) {
+        this.name = name;
+        this.age = age;
+        this.voice = voice;
     }
 }
