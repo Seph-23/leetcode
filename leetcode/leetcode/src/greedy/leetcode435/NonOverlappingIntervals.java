@@ -6,7 +6,6 @@ public class NonOverlappingIntervals {
 
   public static void main(String[] args) {
     int[][] intervals = {{1, 2}, {2, 3}, {3, 4}, {1, 3}};
-//    int[][] intervals = {{2, 3}, {1, 2}, {1, 5}, {5, 6}};
     System.out.println(eraseOverlapIntervals(intervals));
   }
 
@@ -19,13 +18,6 @@ public class NonOverlappingIntervals {
     //each array inside intervals
     Arrays.sort(intervals, (a, b) -> a[1] - b[1]);
 
-//    for (int i = 0; i < intervals.length; i++) {
-//      for (int j = 0; j < 2; j++) {
-//        System.out.print(intervals[i][j] + " ");
-//      }
-//      System.out.println();
-//    }
-
     int k = 0;     //index one loop before, i is current index of the loop.
     int count = 1;     //# of arrays that are not overlapping.
     int n = intervals.length;   //# of arrays inside intervals.
@@ -36,6 +28,6 @@ public class NonOverlappingIntervals {
       }
     }
 
-    return n-count;     //return (total arrays - # of arrays in order).
+    return n-count;     //return (total arrays - # of arrays not overlapping).
   }
 }
