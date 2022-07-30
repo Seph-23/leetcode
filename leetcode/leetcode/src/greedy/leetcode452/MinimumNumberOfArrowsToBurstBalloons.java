@@ -2,9 +2,6 @@ package greedy.leetcode452;
 
 import java.util.Arrays;
 
-/**
- * not solved yet!!
- */
 public class MinimumNumberOfArrowsToBurstBalloons {
 
   public static void main(String[] args) {
@@ -14,20 +11,27 @@ public class MinimumNumberOfArrowsToBurstBalloons {
   }
 
   static int findMinArrowShots(int[][] points) {
-    //sorts intervals in ascending order comparing 2nd element of
-    //each array inside intervals
-    Arrays.sort(points, (a, b) -> a[1] - b[1]);
-
-    int k = 0;
-    int count = 0;
-    int n = points.length;
-    for (int i = 1; i < n; i++) {
-      if (points[i][0] >= points[k][1]) {
-        k = ++i;
-        count++;        //# of arrays not overlapping
-      }
+    if (points == null || points.length == 0 || points[0].length == 0) {      //corner case
+      return 0;
     }
 
-    return count;
+    Arrays.sort(points, (a, b) -> a[0] - b[0] == 0 ? a[1] - b[1] : a[0] - b[0]);
+
+    int index = 0 , result = 0;
+
+    while (index < points.length) {
+      int end = points[index][1];
+      while (index + 1 < points.length) {
+        if (end >= points[index + 1][0]) {
+          end = Math.min(end, points[index + 1][1]);
+          index++;
+        }else {
+          break;
+        }
+        result++;
+        index++;
+      }
+    }
+    return result;
   }
 }
