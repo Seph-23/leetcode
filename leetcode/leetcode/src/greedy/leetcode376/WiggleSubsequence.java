@@ -22,37 +22,6 @@ public class WiggleSubsequence {
   }
 
   static int wiggleMaxLength(int[] nums) {
-//        int befDiff, currDiff;
-//        ArrayList<Integer> arrList = new ArrayList<>();
-//
-//        for (int i = 0; i < nums.length; i++) {
-//            arrList.add(nums[i]);
-//        }
-//
-//        if (arrList.size() == 0) {
-//            return 0;
-//        } else if (arrList.size() == 1) {
-//            return 1;
-//        } else if (nums[0] == nums[1] && arrList.size()==2) {
-//            return 1;
-//        }
-//
-//        for (int i = 1; i < arrList.size()-1; i++) {
-//            befDiff = arrList.get(i-1) - arrList.get(i);
-//            currDiff = arrList.get(i) - arrList.get(i+1);
-//            if (befDiff < 0 && currDiff < 0) {
-//                arrList.remove(i + 1);
-//                i--;
-//            }else if (befDiff > 0 && currDiff > 0){
-//                arrList.remove(i + 1);
-//                i--;
-//            }else if (arrList.get(i-1).equals(arrList.get(i))) {
-//                arrList.remove(i - 1);
-//                i--;
-//            }
-//        }
-
-//        return arrList.size();
     if (nums.length == 0) {
       return 0;
     }
