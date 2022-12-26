@@ -1,4 +1,4 @@
-package bradthfirstsearch.leetcode116;
+package breadthfirstsearch.leetcode116;
 
 public class PopulatingNextRightPointers {
   public void connect(TreeLinkNode root) {

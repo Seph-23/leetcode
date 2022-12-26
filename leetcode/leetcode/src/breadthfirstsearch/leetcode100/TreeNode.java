@@ -1,4 +1,4 @@
-package bradthfirstsearch.leetcode100;
+package breadthfirstsearch.leetcode100;
 
 public class TreeNode {
   int val;

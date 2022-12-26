@@ -1,4 +1,4 @@
-package bradthfirstsearch.leetcode130;
+package breadthfirstsearch.leetcode130;
 
 public class SurroundedRegions {
     public void solve(char[][] board) {
