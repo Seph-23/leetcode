@@ -18,7 +18,7 @@ public class CourseSchedule {
         prerequisites[3][1] = 3;
         System.out.println(canFinish(numCourses, prerequisites));
     }
-    
+
     private static boolean canFinish(int numCourses, int[][] prerequisites) {
         //No courses, you can have degree ( I wish )
         if(numCourses <= 0)
